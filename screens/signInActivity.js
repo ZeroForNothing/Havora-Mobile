@@ -18,7 +18,7 @@ export default class signInActivity extends Component {
         <View style={styles.container}>
         <ImageBackground source={require('../assets/displayBackground.jpg')} style={styles.backgroundImage}>
           <TextInput 
-            placeholder="Username" 
+            placeholder="Usernamee" 
             style={styles.input}
             onChangeText = {(username) => this.setState({ username })}
             />
