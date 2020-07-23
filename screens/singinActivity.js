@@ -25,92 +25,57 @@ export default class signinActivity extends Component {
   render() {
     const navigation = this.props.navigation;
     const validationSchema = yup.object().shape({
-      username: yup
-        .string()
-        .label("username")
-        .required(),
+      username: yup.string().label("username").required(),
 
-      password: yup
-        .string()
-        .label("password")
-        .required()
-        .min(2, "Seems a bit short...")
+      password: yup.string().label("password").required().min(2, "Seems a bit short...")
     });
 
-    return (
-      <View style={styles.container}>
-        <ImageBackground
-          source={require("../assets/displayBackground.jpg")}
-          style={styles.backgroundImage}
-        >
-          <Formik
-            initialValues={{username: "", password: ""}}
-            onSubmit={(values, actions) => {
-              navigation.navigate("home");
-              // UserSignIn(
-              //   actions,
-              //   navigate,
-              //   values.username,
-              //   values.password,
-              //   null
-              // );
-            }}
-            validationSchema={validationSchema}
-          >
-            {formikProps => (
-              <React.Fragment>
-                <TextInput
-                  placeholder="Username"
-                  style={styles.input}
-                  onChangeText={formikProps.handleChange("username")}
-                  onBlur={formikProps.handleBlur("username")}
-                  autoFocus
-                />
-                <Text style={{color: "red"}}>
-                  {formikProps.touched.username && formikProps.errors.username}
-                </Text>
+    return (<View style={styles.container}>
+      <ImageBackground source={require("../assets/displayBackground.jpg")} style={styles.backgroundImage}>
+        <Formik initialValues={{
+            username: "",
+            password: ""
+          }} onSubmit={(values, actions) => {
+            UserSignIn(actions, navigation, values.username, values.password, null);
+          }} validationSchema={validationSchema}>
+          {
+            formikProps => (<React.Fragment>
+              <TextInput placeholder="Username" style={styles.input} onChangeText={formikProps.handleChange("username")} onBlur={formikProps.handleBlur("username")}/>
+              <Text style={{
+                  color: "red"
+                }}>
+                {formikProps.touched.username && formikProps.errors.username}
+              </Text>
 
-                <TextInput
-                  placeholder="Password"
-                  style={styles.input}
-                  onChangeText={formikProps.handleChange("password")}
-                  onBlur={formikProps.handleBlur("password")}
-                  secureTextEntry
-                />
-                <Text style={{color: "red"}}>
-                  {formikProps.touched.password && formikProps.errors.password}
-                </Text>
+              <TextInput placeholder="Password" style={styles.input} onChangeText={formikProps.handleChange("password")} onBlur={formikProps.handleBlur("password")}/>
+              <Text style={{
+                  color: "red"
+                }}>
+                {formikProps.touched.password && formikProps.errors.password}
+              </Text>
 
-                {formikProps.isSubmitting ? (
-                  <ActivityIndicator />
-                ) : (
-                  <View style={styles.touchableOpacityView}>
-                    <TouchableOpacity
-                      disabled={false}
-                      style={styles.touchableOpacitySign}
-                      onPress={formikProps.handleSubmit}
-                    >
+              {
+                formikProps.isSubmitting
+                  ? (<ActivityIndicator/>)
+                  : (<View style={styles.touchableOpacityView}>
+                    <TouchableOpacity disabled={false} style={styles.touchableOpacitySign} onPress={formikProps.handleSubmit}>
                       <Text style={styles.touchableOpacityTextSign}>
                         Sign In
                       </Text>
                     </TouchableOpacity>
-                  </View>
-                )}
-              </React.Fragment>
-            )}
-          </Formik>
+                  </View>)
+              }
+            </React.Fragment>)
+          }
+        </Formik>
 
-          <View style={styles.touchableOpacityView}>
-            <TouchableOpacity
-              disabled={false}
-              style={styles.touchableOpacityRegister}
-            >
-              <Text style={styles.touchableOpacityTextRegister}>Register</Text>
-            </TouchableOpacity>
-          </View>
-        </ImageBackground>
-      </View>
-    );
+        <View style={styles.touchableOpacityView}>
+          <TouchableOpacity disabled={false} style={styles.touchableOpacityRegister}>
+            <Text style={styles.touchableOpacityTextRegister}>Register</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
+    </View>);
   }
 }
 const styles = StyleSheet.create({
