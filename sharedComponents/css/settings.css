@@ -1,0 +1,134 @@
+#settingsTab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: none;
+}
+
+.settingsLayer {
+  backdrop-filter: blur(55px);
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  z-index: 10;
+  box-shadow: 0px 0px 33px -2px rgba(0, 0, 0, 0.85);
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-app-region: no-drag;
+}
+
+.settingsLayerExtender {
+  left: 50% !important;
+}
+
+#settingsBackButton {
+  cursor: pointer;
+  position: absolute;
+  top: 3%;
+  left: 2%;
+  width: 13%;
+  border-radius: 6px;
+  height: 9%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(../../sharedComponents/Media/backArrow.png);
+  box-shadow: 0px 0px 8px 2px rgba(56, 56, 56, 0.11);
+}
+
+.settingsItems {
+  position: absolute;
+  top: 15%;
+  left: 7%;
+  width: 86%;
+  height: 82%;
+}
+
+.SettingsWord {
+  display: none;
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #242424;
+  font-size: 60px;
+  font-family: logoFont;
+}
+
+.leftSettingsPanel {
+  float: left;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightSettingsPanel {
+  box-shadow: 0px 0px 8px 2px rgba(56, 56, 56, 0.11);
+  float: right;
+  height: 100%;
+  width: 77%;
+  display: flex;
+  border-radius: 6px;
+  flex-direction: column;
+  background-image: url(../../sharedComponents/Media/lobbyPlayerWallPaper.png);
+}
+
+.stackedSettings {
+  border-left: 3px solid grey;
+  background-image: url(../../sharedComponents/Media/lobbyPlayerWallPaper.png);
+  text-align: center;
+  cursor: pointer;
+  font-size: 21px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 7% 0;
+  margin-bottom: 8%;
+  box-shadow: 0px 0px 8px 2px rgba(56, 56, 56, 0.11);
+}
+
+.shownSettingsPanel {
+  display: flex !important;
+}
+
+.selectedStackedSettings {
+  border-left-color: red;
+}
+
+.panelSettings {
+  padding: 5% 17%;
+  display: none;
+}
+
+.settingsList {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#resolution {
+  padding: 2% 0%;
+  width: 26%;
+  font-size: 18px;
+  padding-left: 2%;
+}
+
+.settingsList span {
+  font-size: 18px;
+}
+
+#siteUrl {
+  color: #5a5a5a;
+  font-size: 22px;
+  text-decoration: underline;
+  cursor: pointer;
+}
