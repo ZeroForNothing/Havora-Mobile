@@ -8,7 +8,7 @@ export const UserSignIn = (actions, navigation, username, password, check) => {
     },
     mode: 'cors',
     method: 'post',
-    body: JSON.stringify({username: username, password: password, check: null})
+    body: JSON.stringify({username: username, password: password, check: check})
   }).then(function(response) {
     return response.json();
   }).then(function(username) {
@@ -17,5 +17,5 @@ export const UserSignIn = (actions, navigation, username, password, check) => {
     }
   }).catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
-  });;
+  });
 };
