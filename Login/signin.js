@@ -9,7 +9,7 @@ import {
   Image
 } from "react-native";
 
-// import {UserSignIn} from "Login/js/signinJS";
+import {UserSignIn} from "./js/signin";
 import {Formik} from "formik";
 import * as yup from "yup";
 
@@ -24,11 +24,7 @@ export default class signIn extends Component {
 
   render() {
     const navigation = this.props.navigation;
-    const validationSchema = yup.object().shape({
-      username: yup.string().label("username").required(),
-
-      password: yup.string().label("password").required().min(2, "Seems a bit short...")
-    });
+    const validationSchema = yup.object().shape({username: yup.string().label("username"), password: yup.string().label("password")});
 
     const showError = () => this.setState({toggleCancel: true})
     const hideError = () => this.setState({toggleCancel: false})
@@ -39,39 +35,36 @@ export default class signIn extends Component {
           username: "",
           password: ""
         }} onSubmit={(values, actions) => {
-          // UserSignIn(actions, navigation, values.username, values.password, null);
+         UserSignIn(actions, navigation, values.username, values.password, null);
         }} validationSchema={validationSchema}>
         {
           formikProps => (<React.Fragment>
             <Text style={styles.errorTextDesign}>
-              {formikProps.touched.username && formikProps.errors.username}
+              Invalid Username or Password
             </Text>
-            <TextInput placeholder="Username" onFocus={() => this.setState({isFocused: true})} onBlur={() => this.setState({isFocused: false})} style={[
+            <TextInput placeholder="Username" onFocus={() => this.setState({usernameFocus: true})} onBlur={() => this.setState({usernameFocus: false})} style={[
                 styles.input, {
-                  borderColor: this.state.isFocused
+                  borderColor: this.state.usernameFocus
                     ? styles.inputSelected.borderColor
                     : styles.input.borderColor
                 }
-              ]} onChangeText={formikProps.handleChange("username")}/>
+              ]}  onChangeText={formikProps.handleChange("username")}/>
 
-            <TextInput placeholder="Password" style={styles.input} onChangeText={formikProps.handleChange("password")} onBlur={formikProps.handleBlur("password")}/>
-            <Text style={{
-                color: "red"
-              }}>
-              {formikProps.touched.password && formikProps.errors.password}
-            </Text>
+            <TextInput placeholder="Password" onFocus={() => this.setState({passwordFocus: true})} onBlur={() => this.setState({passwordFocus: false})} style={[
+                styles.input, {
+                  borderColor: this.state.passwordFocus
+                    ? styles.inputSelected.borderColor
+                    : styles.input.borderColor
+                }
+              ]}  onChangeText={formikProps.handleChange("password")}/>
 
-            {
-              formikProps.isSubmitting
-                ? (<ActivityIndicator/>)
-                : (<View style={styles.touchableOpacityView}>
+            <View style={styles.touchableOpacityView}>
                   <TouchableOpacity disabled={false} style={styles.touchableOpacitySign} onPress={formikProps.handleSubmit}>
                     <Text style={styles.touchableOpacityTextSign}>
                       Login
                     </Text>
                   </TouchableOpacity>
-                </View>)
-            }
+                </View>
           </React.Fragment>)
         }
       </Formik>

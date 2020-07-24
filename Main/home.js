@@ -11,9 +11,11 @@ import {
 
 class home extends Component {
   render() {
-    return (<View style={styles.container}>
+    return (
+      <View style={styles.container}>
       <Text>Hello</Text>
-    </View>);
+      </View>
+    );
   }
 }
 export default home;
