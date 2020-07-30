@@ -1,9 +1,4 @@
 export const UserSignIn = (actions, navigation, username, password, check) => {
-  // if (username != null) {
-  //   navigation.navigate("home");
-  // }else{
-  //   return false;
-  // }
   async function postData(url = '', data = {}) {
     const response = await fetch(url, {
       headers: {
@@ -15,13 +10,17 @@ export const UserSignIn = (actions, navigation, username, password, check) => {
     });
     return response.text();
   }
-  postData('https://89.40.13.203/SignIn', {
+  postData('https://zerofornothing.com/SignIn', {
       username: 'whatever',
       password: 'whatever',
       check: null
     })
     .then(data => {
-      alert(data);
+      if (username != null) {
+        navigation.navigate("home");
+      }else{
+        return false;
+      }
     }).catch(error => {
       console.error('There has been a problem with your fetch operation:', error);
     });
