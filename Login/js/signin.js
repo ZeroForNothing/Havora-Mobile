@@ -17,7 +17,7 @@ export const UserSignIn = (actions, navigation, username, password, check) => {
     })
     .then(data => {
       if (username != null) {
-        navigation.navigate("home");
+        navigation.navigate("mainScreen");
       }else{
         return false;
       }
