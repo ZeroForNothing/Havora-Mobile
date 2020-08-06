@@ -38,7 +38,7 @@ export default class signup extends Component {
     return (
       <View style={styles.MainContainer}>
       <View style={styles.statusBar}>
-        <TouchableOpacity //onPress={}
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('SignInPage')}}
         style={styles.backward}>
            <MaterialCommunityIcons name="keyboard-backspace" size={36} color="black" />
         </TouchableOpacity>
@@ -47,7 +47,7 @@ export default class signup extends Component {
 
           <ScrollView style={styles.ScrollContainer}>
                     <Text style={styles.inputLabel}>First Name</Text>
-                    <TextInput placeholder="Fex. Axel" style={styles.input} />
+                    <TextInput placeholder="ex. Axel" style={styles.input} />
                     <Text style={styles.inputLabel}>Last Name</Text>
                     <TextInput placeholder="ex. Brock" style={styles.input} />
                     <Text style={styles.inputLabel}>Username</Text>

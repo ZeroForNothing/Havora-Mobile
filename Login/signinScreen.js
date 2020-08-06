@@ -70,7 +70,8 @@ export default class signIn extends Component {
       </Formik>
 
       <View style={styles.touchableOpacityView}>
-        <TouchableOpacity disabled={false} style={styles.touchableOpacityRegister} onPress={navigation.navigate("signupScreen")}>
+        <TouchableOpacity style={styles.touchableOpacityRegister} onPress={() => {this.props.navigation.navigate('SignUpPage')}}
+        >
           <Text style={styles.touchableOpacityTextRegister}>Create Account</Text>
         </TouchableOpacity>
       </View>
