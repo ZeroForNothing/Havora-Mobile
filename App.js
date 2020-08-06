@@ -4,15 +4,19 @@ import signupScreen from "./Login/signupScreen";
 import mainScreen from "./Main/mainScreen";
 
 const App = createSwitchNavigator({
-  signupScreen:{
-    screen : signupScreen
-  },
   signinScreen: {
     screen: signinScreen
   },
   mainScreen: {
     screen: mainScreen
+  },
+  signupScreen:{
+    screen : signupScreen
   }
-});
+},
+        {
+          initialRouteName: 'signinScreen',
+        }
+);
 
-export default createAppContainer(App);
+export default createAppContainer(App );
