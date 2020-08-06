@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StatusBar , StyleSheet , TouchableOpacity ,Image} from 'react-native';
+import { Text, View , StyleSheet , TouchableOpacity ,Image} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Constants from "expo-constants";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';

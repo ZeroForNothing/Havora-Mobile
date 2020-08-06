@@ -1,10 +1,14 @@
 import {createSwitchNavigator, createAppContainer} from "react-navigation";
-import signin from "./Login/signin";
+import signinScreen from "./Login/signinScreen";
+import signupScreen from "./Login/signupScreen";
 import mainScreen from "./Main/mainScreen";
 
 const App = createSwitchNavigator({
-  signin: {
-    screen: signin
+  signupScreen:{
+    screen : signupScreen
+  },
+  signinScreen: {
+    screen: signinScreen
   },
   mainScreen: {
     screen: mainScreen
