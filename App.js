@@ -1,21 +1,21 @@
 import {createSwitchNavigator, createAppContainer} from "react-navigation";
-import signinScreen from "./Login/signinScreen";
-import signupScreen from "./Login/signupScreen";
-import mainScreen from "./Main/mainScreen";
+import {createStackNavigator} from "react-navigation-stack";
+
+import SignInScreen from "./Login/signinScreen";
+import SignUpScreen from "./Login/signupScreen";
+import MainScreen from "./Main/mainScreen";
+
+const SignInStack = createStackNavigator({ SignInScreen: SignInScreen });
+const SignUpStack = createStackNavigator({ SignUpScreen: SignUpScreen });
+const MainStack = createStackNavigator({ MainScreen: MainScreen });
 
 const App = createSwitchNavigator({
-  signinScreen: {
-    screen: signinScreen
-  },
-  mainScreen: {
-    screen: mainScreen
-  },
-  signupScreen:{
-    screen : signupScreen
-  }
+  SignInPage: SignInStack,
+  SignUpPage : SignUpStack,
+  MainPage: MainStack
 },
         {
-          initialRouteName: 'signinScreen',
+          initialRouteName: 'SignInPage',
         }
 );
 
