@@ -7,8 +7,6 @@ var _dangerousStyleValue = _interopRequireDefault(require("../dangerousStyleValu
 
 var _hyphenateStyleName = _interopRequireDefault(require("hyphenate-style-name"));
 
-var _warnValidStyle = _interopRequireDefault(require("../warnValidStyle"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* eslint-disable */
@@ -30,7 +28,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {DOMElement} node
  * @param {object} styles
  */
-function setValueForStyles(node, styles, getStack) {
+function setValueForStyles(node, styles) {
   var style = node.style;
 
   for (var styleName in styles) {
@@ -39,13 +37,6 @@ function setValueForStyles(node, styles, getStack) {
     }
 
     var isCustomProperty = styleName.indexOf('--') === 0;
-
-    if (process.env.NODE_ENV !== 'production') {
-      if (!isCustomProperty) {
-        (0, _warnValidStyle.default)(styleName, styles[styleName], getStack);
-      }
-    }
-
     var styleValue = (0, _dangerousStyleValue.default)(styleName, styles[styleName], isCustomProperty);
 
     if (styleName === 'float') {

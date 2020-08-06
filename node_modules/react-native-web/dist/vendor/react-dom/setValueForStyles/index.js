@@ -11,7 +11,6 @@
  */
 import dangerousStyleValue from '../dangerousStyleValue';
 import hyphenateStyleName from 'hyphenate-style-name';
-import warnValidStyle from '../warnValidStyle';
 /**
  * Sets the value for multiple styles on a node.  If a value is specified as
  * '' (empty string), the corresponding style property will be unset.
@@ -20,7 +19,7 @@ import warnValidStyle from '../warnValidStyle';
  * @param {object} styles
  */
 
-function setValueForStyles(node, styles, getStack) {
+function setValueForStyles(node, styles) {
   var style = node.style;
 
   for (var styleName in styles) {
@@ -29,13 +28,6 @@ function setValueForStyles(node, styles, getStack) {
     }
 
     var isCustomProperty = styleName.indexOf('--') === 0;
-
-    if (process.env.NODE_ENV !== 'production') {
-      if (!isCustomProperty) {
-        warnValidStyle(styleName, styles[styleName], getStack);
-      }
-    }
-
     var styleValue = dangerousStyleValue(styleName, styles[styleName], isCustomProperty);
 
     if (styleName === 'float') {
