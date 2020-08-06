@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View ,Image , StyleSheet, ScrollView ,StatusBar} from 'react-native';
+import { Text, View ,Image , StyleSheet, ScrollView ,TouchableOpacity} from 'react-native';
 import Video from 'react-native-video';
 import Moment from 'moment';
+import {  AntDesign , Octicons ,Feather} from '@expo/vector-icons';
+
 import {GetTopPosts } from './js/community';
 
 
@@ -16,7 +18,7 @@ export class Community extends Component {
       return (
 
          <View>
-         <StatusBar  />
+
   <GetTopPosts parentCallback = {this.callbackFunction}/>
             <ScrollView style = {styles.scrollView}>
                {
@@ -36,7 +38,7 @@ export class Community extends Component {
                        /> ) : ( < View style = { styles.userPic} ></View>))}
                        <View style={styles.dateAndNameContainer}>
                            <Text style={styles.username}>{item.username}</Text>
-                           <Text>{Moment(item.postDate).format()}</Text>
+                           <Text style={styles.postDate}>{Moment(item.postDate).format('MMMM Do YYYY, hh:mm a')}</Text>
                        </View>
                      </View>
 
@@ -66,15 +68,37 @@ export class Community extends Component {
                         //style={styles.backgroundVideo}
                          /> ) : ( null))}
                      </View>
-                        <Text>{item.mediaUrl}</Text>
+                       <View>
+                        {(item.mediaUrl != null) ? <Text>{item.mediaUrl}</Text> : (null)}
+                       </View>
                         <Text style={styles.postText}>{item.postText}</Text>
-
-                        <Text>{item.commentsCount}</Text>
-                        <Text>{item.postAgree}</Text>
-                        <Text>{item.postDisagree}</Text>
-                        <Text>{item.userInteracted}</Text>
-                        <Text>{item.postViews}</Text>
+                        <View style={styles.footerContainer}>
+                          <Text style={styles.subFooterContainer}>{item.postAgree} <AntDesign name="like2" size={20} color="black" /></Text>
+                          <Text style={styles.subFooterContainer}>{item.postDisagree} <AntDesign name="dislike2" size={20} color="black" /></Text>
+                          <Text style={styles.subFooterContainer}>{item.commentsCount} <Octicons name="comment-discussion" size={20} color="black" /></Text>
+                          <Text style={styles.subFooterContainer}>{item.postViews} <Feather name="eye" size={20} color="black" /></Text>
+                          <Text style={styles.subFooterContainer}>{item.userInteracted} <AntDesign name="sharealt" size={20} color="black" /></Text>
+                        </View>
+                        <View style={styles.interactionFooterContainer}>
+                          <TouchableOpacity //onPress={}
+                          style={styles.interactSubFooterContainer}>
+                             <Text style={styles.appButtonText}>Agree</Text>
+                          </TouchableOpacity>
+                          <TouchableOpacity //onPress={}
+                          style={styles.interactSubFooterContainer}>
+                             <Text style={styles.appButtonText}>Disagree</Text>
+                          </TouchableOpacity>
+                          <TouchableOpacity //onPress={}
+                          style={styles.interactSubFooterContainer}>
+                             <Text style={styles.appButtonText}>Comments</Text>
+                          </TouchableOpacity>
+                          <TouchableOpacity //onPress={}
+                          style={styles.interactSubFooterContainer}>
+                             <Text style={styles.appButtonText}>Share</Text>
+                          </TouchableOpacity>
+                        </View>
                      </View>
+
                   ))
                }
             </ScrollView>
@@ -89,11 +113,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   } ,
   post : {
+    backgroundColor:'#ededed',
     paddingHorizontal:'2%',
-    borderWidth: 0,
+    borderTopWidth:1,
     borderBottomWidth:1,
-    borderColor: '#e6e6e6',
-    paddingVertical:'2%'
+    borderColor: '#e0e0e0',
+    paddingVertical:'2%',
+    marginVertical:5
   }
   ,
   userPic : {
@@ -104,7 +130,10 @@ const styles = StyleSheet.create({
   },
   postTitle:{
     fontSize: 21,
-    marginBottom:4
+    marginBottom:10,
+    borderBottomWidth:1,
+  borderColor: '#e6e6e6',
+  paddingBottom:4
 },
 postCategory : {
   fontSize: 21,
@@ -113,19 +142,56 @@ scrollView : {
 
 },
 postText : {
-  fontSize: 18
+  fontSize: 18,
+  paddingVertical: 18,
 },
 dateAndNameContainer : {
   marginLeft: 10,
-  marginTop:8
+  marginTop:6
 },
 headerContainer : {
   flexDirection: 'row'
 },
 username: {
-  fontSize: 18
+  fontSize: 19
 },
 postDate : {
   fontSize : 13
+},
+footerContainer:{
+  flex: 1,
+  flexDirection: 'row',
+    justifyContent:'space-around',
+  backgroundColor:'#f3f3f3',
+  alignItems:'center',
+  textAlignVertical: "center",
+  paddingVertical: 6,
+  borderRadius:6,
+
+},
+subFooterContainer:{
+  flexDirection: 'row',
+  width:'20%',
+  justifyContent: 'space-around',
+  textAlignVertical: 'center',
+  fontSize:17,
+  alignItems:'center',
+  textAlign: 'center',
+},
+interactionFooterContainer : {
+  flexDirection: 'row',
+  justifyContent:'space-between',
+  marginTop:10
+},
+interactSubFooterContainer : {
+  backgroundColor: '#f3f3f3',
+  borderRadius:6,
+  paddingHorizontal:14,
+  paddingVertical: 6,
+
+},
+appButtonText : {
+  textAlign : 'center',
+  fontSize:16
 }
 });

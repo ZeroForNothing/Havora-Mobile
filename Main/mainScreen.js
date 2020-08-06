@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Text, View ,Image} from 'react-native';
+import { Text, View, StatusBar , StyleSheet , TouchableOpacity ,Image} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import Constants from "expo-constants";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons , FontAwesome , FontAwesome5  , MaterialIcons} from '@expo/vector-icons';
 
@@ -81,7 +82,43 @@ function MyTabs() {
 export default function App() {
   return (
     <NavigationContainer>
+
+    <View style={styles.statusBar}>
+      <Text  style={styles.statusBarText}>Home</Text>
+      <TouchableOpacity //onPress={}
+      style={styles.userProfile}>
+         <Image
+            style={styles.userPic}
+            source={{uri : 'https://zerofornothing.com/uploadMedia/profilePicture/BCF4D45A3B074B31A7998520FED05ACE56C8146AC7A94E9A84D0315CBCEBCCD35B66CC4902C540CA949B8BFF8367981B/medium.jpg'}}
+          />
+      </TouchableOpacity>
+    </View>
       <MyTabs />
     </NavigationContainer>
   );
 }
+const styles = StyleSheet.create({
+statusBar: {
+  paddingTop: Constants.statusBarHeight,
+  backgroundColor:'#e8e8e8',
+  flexDirection: 'row',
+    justifyContent:'space-between',
+      paddingVertical: 10,
+      alignItems:'center'
+},
+statusBarText : {
+  fontSize: 24,
+
+  paddingLeft:20
+},
+userProfile:{
+  paddingRight:14
+},
+userPic :{
+  marginTop:5,
+  width:50 ,
+  height:50,
+  borderRadius:50,
+
+}
+})
