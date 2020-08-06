@@ -110,8 +110,7 @@ statusBar: {
 statusBarText : {
   fontSize: 24,
     paddingTop:8,
-  paddingLeft:20,
-  fontFamily:'ubuntu'
+  paddingLeft:20
 },
 userProfile:{
   paddingRight:14
