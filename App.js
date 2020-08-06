@@ -5,9 +5,9 @@ import SignInScreen from "./Login/signinScreen";
 import SignUpScreen from "./Login/signupScreen";
 import MainScreen from "./Main/mainScreen";
 
-const SignInStack = createStackNavigator({ SignInScreen: SignInScreen });
-const SignUpStack = createStackNavigator({ SignUpScreen: SignUpScreen });
-const MainStack = createStackNavigator({ MainScreen: MainScreen });
+const SignInStack = createStackNavigator({ SignInScreen: SignInScreen} , { headerMode: 'none' });
+const SignUpStack = createStackNavigator({ SignUpScreen: SignUpScreen } , { headerMode: 'none' });
+const MainStack = createStackNavigator({ MainScreen: MainScreen } , { headerMode: 'none' });
 
 const App = createSwitchNavigator({
   SignInPage: SignInStack,
