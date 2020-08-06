@@ -3,14 +3,14 @@ import { Text, View , StyleSheet , TouchableOpacity ,Image} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Constants from "expo-constants";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { MaterialCommunityIcons , FontAwesome , FontAwesome5  , MaterialIcons} from '@expo/vector-icons';
+import { MaterialCommunityIcons  , FontAwesome5  , Feather ,SimpleLineIcons} from '@expo/vector-icons';
 
 import {Home} from './homeScreen';
 import {Profile} from './profileScreen';
 import {Community} from './communityScreen';
 import {Store} from './storeScreen';
 import {Inventory} from './inventoryScreen';
-
+import {Chat} from './chatScreen';
 
 
 
@@ -20,11 +20,11 @@ function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      activeColor="#ff0000"
+      activeColor="#333"
       inactiveColor="#c7c7c7"
       barStyle={{ backgroundColor: '#e8e8e8' }}
-      labelStyle={{ fontSize: 12 }}
-      style={{ backgroundColor: 'tomato' }}
+      labelStyle={{ fontSize: 18 }}
+
       tabBarOptions={{ showLabel:false }}
     >
     <Tab.Screen
@@ -32,49 +32,50 @@ function MyTabs() {
       component={Community}
       options={{
         tabBarIcon: ({ color }) => (
-          <MaterialIcons name="group" size={24}  color={color} />
+          <Feather name="users" color={color} size={24}/>
         ),
       }}
     />
     <Tab.Screen
-      name="Profile"
-      component={Profile}
+    name="Store"
+    component={Store}
+    options={{
+      tabBarIcon: ({ color }) => (
+
+        <FontAwesome5 name="opencart" size={20} color={color} />
+      )
+    }}
+    />
+    <Tab.Screen
+      name="Home"
+      component={Home}
+
       options={{
-        tabBarLabel: 'Updates',
         tabBarIcon: ({ color }) => (
-          <FontAwesome name="user-circle" color={color} size={24} />
+          <SimpleLineIcons name="home" size={24} color={color} />
         ),
       }}
     />
 
-    <Tab.Screen
-      name="Home"
-      component={Home}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <FontAwesome name="home" color={color} size={24} />
-        ),
-      }}
-    />
-      <Tab.Screen
-        name="Store"
-        component={Store}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="local-grocery-store" size={24} color={color} />
-          )
-        }}
-      />
       <Tab.Screen
         name="Inventory"
         component={Inventory}
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bag-personal" color={color} size={26} />
+            <MaterialCommunityIcons name="bag-personal-outline" color={color} size={24} />
           ),
         }}
       />
-
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          tabBarLabel: 'Chat',
+          tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="message" color={color} size={24} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -84,7 +85,7 @@ export default function App() {
     <NavigationContainer>
 
     <View style={styles.statusBar}>
-      <Text  style={styles.statusBarText}>Home</Text>
+      <Text  style={styles.statusBarText}>Zero for Nothing</Text>
       <TouchableOpacity //onPress={}
       style={styles.userProfile}>
          <Image
@@ -103,21 +104,22 @@ statusBar: {
   backgroundColor:'#e8e8e8',
   flexDirection: 'row',
     justifyContent:'space-between',
-      paddingVertical: 10,
+      paddingVertical: 8,
       alignItems:'center'
 },
 statusBarText : {
   fontSize: 24,
-
-  paddingLeft:20
+    paddingTop:8,
+  paddingLeft:20,
+  fontFamily:'ubuntu'
 },
 userProfile:{
   paddingRight:14
 },
 userPic :{
   marginTop:5,
-  width:50 ,
-  height:50,
+  width:40 ,
+  height:40,
   borderRadius:50,
 
 }
