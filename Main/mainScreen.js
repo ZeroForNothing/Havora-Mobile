@@ -105,7 +105,16 @@ statusBar: {
   flexDirection: 'row',
     justifyContent:'space-between',
       paddingVertical: 8,
-      alignItems:'center'
+      alignItems:'center',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2,
+
+      elevation: 4,
 },
 statusBarText : {
   fontSize: 24,
@@ -113,13 +122,13 @@ statusBarText : {
   paddingLeft:20
 },
 userProfile:{
-  paddingRight:14
+  paddingRight:14,
+
 },
 userPic :{
   marginTop:5,
   width:40 ,
   height:40,
   borderRadius:50,
-
 }
 })
