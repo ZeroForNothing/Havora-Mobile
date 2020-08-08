@@ -6,11 +6,13 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  Image
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard
 } from "react-native";
 
 import {UserSignIn} from "./js/signin";
-import {Formik} from "formik";
+
 import * as yup from "yup";
 
 export default class signIn extends Component {
@@ -18,56 +20,70 @@ export default class signIn extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      showError : false
     };
   }
 
+  handleMainNavigation = (page) =>{
+    this.props.navigation.navigate(page)
+  }
+  checkError() {
+       if (this.state.showError) {
+           return (
+             <Text style={styles.errorTextDesign}>
+               Invalid Username or Password
+             </Text>
+           );
+       } else {
+           return null;
+       }
+   }
+   callbackFunction = (childData) => {
+      this.setState({ showError : childData })
+    }
   render() {
     const navigation = this.props.navigation;
     const validationSchema = yup.object().shape({username: yup.string().label("username"), password: yup.string().label("password")});
 
-    const showError = () => this.setState({toggleCancel: true})
-    const hideError = () => this.setState({toggleCancel: false})
-
-    return (<View style={styles.container}>
+    return (
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
       <Image source={require("../sharedComponents/Media/Z4N_Logo.png")} style={styles.logoImage}/>
-      <Formik initialValues={{
-          username: "",
-          password: ""
-        }} onSubmit={(values, actions) => {
-         UserSignIn(actions, navigation, values.username, values.password, null);
-        }} validationSchema={validationSchema}>
-        {
-          formikProps => (<React.Fragment>
-            <Text style={styles.errorTextDesign}>
-              Invalid Username or Password
-            </Text>
-            <TextInput placeholder="Username" onFocus={() => this.setState({usernameFocus: true})} onBlur={() => this.setState({usernameFocus: false})} style={[
+
+            {this.checkError()}
+
+            <TextInput
+            placeholder="Username"
+            onFocus={() => this.setState({usernameFocus: true})}
+            onBlur={() => this.setState({usernameFocus: false})}
+            style={[
                 styles.input, {
                   borderColor: this.state.usernameFocus
                     ? styles.inputSelected.borderColor
                     : styles.input.borderColor
                 }
-              ]}  onChangeText={formikProps.handleChange("username")}/>
+              ]}
+              onChangeText={(value) => this.setState({username: value})}
+              value={this.state.username}/>
 
-            <TextInput placeholder="Password" onFocus={() => this.setState({passwordFocus: true})} onBlur={() => this.setState({passwordFocus: false})} style={[
+            <TextInput
+            placeholder="Password"
+            onFocus={() => this.setState({passwordFocus: true})}
+            onBlur={() => this.setState({passwordFocus: false})}
+            style={[
                 styles.input, {
                   borderColor: this.state.passwordFocus
                     ? styles.inputSelected.borderColor
                     : styles.input.borderColor
                 }
-              ]}  onChangeText={formikProps.handleChange("password")}/>
+              ]}
+              onChangeText={(value) => this.setState({password: value})}
+              value={this.state.password}/>
 
             <View style={styles.touchableOpacityView}>
-                  <TouchableOpacity disabled={false} style={styles.touchableOpacitySign} onPress={formikProps.handleSubmit}>
-                    <Text style={styles.touchableOpacityTextSign}>
-                      Login
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-          </React.Fragment>)
-        }
-      </Formik>
+              <UserSignIn parentCallback = {this.callbackFunction} username={this.state.username} password={this.state.password} moveToMainPage= {this.handleMainNavigation}/>
+            </View>
 
       <View style={styles.touchableOpacityView}>
         <TouchableOpacity style={styles.touchableOpacityRegister} onPress={() => {this.props.navigation.navigate('SignUpPage')}}
@@ -75,7 +91,9 @@ export default class signIn extends Component {
           <Text style={styles.touchableOpacityTextRegister}>Create Account</Text>
         </TouchableOpacity>
       </View>
-    </View>);
+    </View>
+    </TouchableWithoutFeedback>
+  );
   }
 }
 const styles = StyleSheet.create({
@@ -99,8 +117,8 @@ const styles = StyleSheet.create({
   },
 
   logoImage: {
-    width: 150,
-    height: 150,
+    width: 200,
+    height: 200,
     marginBottom: 60,
     marginLeft: -10
   },
@@ -127,20 +145,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
 
-  touchableOpacitySign: {
-    backgroundColor: "#e8e8e8",
-    borderRadius: 6,
-    width: "100%",
-    height: "100%",
-    flexDirection: "row",
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center"
-  },
 
-  touchableOpacityTextSign: {
-    fontWeight: "bold"
-  },
 
   touchableOpacityRegister: {
     backgroundColor: "#e8e8e8",
