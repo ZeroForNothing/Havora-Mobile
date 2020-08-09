@@ -42,9 +42,12 @@ export default class signIn extends Component {
         }} validationSchema={validationSchema}>
         {
           formikProps => (<React.Fragment>
-            <Text style={styles.errorTextDesign}>
-              Invalid Username or Password
-            </Text>
+            <View style={styles.errorTextDesign}>
+              <Text style={styles.errorText}>
+                Invalid Username or Password
+              </Text>
+            </View>
+            
             <TextInput placeholder="Username" onFocus={() => this.setState({usernameFocus: true})} onBlur={() => this.setState({usernameFocus: false})} style={[
                 styles.input, {
                   borderColor: this.state.usernameFocus
@@ -87,14 +90,20 @@ const styles = StyleSheet.create({
   errorTextDesign: {
     width: 242,
     height: 50,
-    color: "#f9f9f9",
     backgroundColor: "#ff4646",
-    borderRadius: 6,
     marginBottom: 10,
-    textAlign: 'center',
-    textAlignVertical: "center"
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius: 15,
   },
-  errorDesign: {},
+
+  errorText: {
+    color: "#f9f9f9",
+  },
+
+  errorDesign: {
+  },
+  
   container: {
     flex: 1,
     backgroundColor: "#fff",
