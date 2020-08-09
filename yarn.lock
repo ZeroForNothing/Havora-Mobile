@@ -956,11 +956,6 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@expo-google-fonts/cutive@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@expo-google-fonts/cutive/-/cutive-0.1.0.tgz#fc0f812781586244a60eda6e33768138e95ac5e5"
-  integrity sha512-BEBkRYMHbOOFtxo8c3x8YyUh4V8UnHjOh/G6+ErrpkAFsFSWa2RlKvnw/WCK68uLF2GumoOC1Zt9uHtLGll1hQ==
-
 "@expo/configure-splash-screen@~0.1.0":
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/@expo/configure-splash-screen/-/configure-splash-screen-0.1.12.tgz#8d8889fc98e87cececdb48af45bc8d6447ce699d"

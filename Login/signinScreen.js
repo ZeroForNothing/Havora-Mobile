@@ -29,7 +29,10 @@ export default class signIn extends Component {
     const showError = () => this.setState({toggleCancel: true})
     const hideError = () => this.setState({toggleCancel: false})
 
-    return (<View style={styles.container}>
+    
+
+    return (
+    <View style={styles.container}>
       <Image source={require("../sharedComponents/Media/Z4N_Logo.png")} style={styles.logoImage}/>
       <Formik initialValues={{
           username: "",
@@ -64,16 +67,19 @@ export default class signIn extends Component {
                       Login
                     </Text>
                   </TouchableOpacity>
-                </View>
+            </View>
+
+            
           </React.Fragment>)
         }
       </Formik>
 
       <View style={styles.touchableOpacityView}>
-        <TouchableOpacity disabled={false} style={styles.touchableOpacityRegister} onPress={navigation.navigate("signupScreen")}>
+        <TouchableOpacity disabled={false} style={styles.touchableOpacityRegister} onPress={() => {this.props.navigation.navigate('SignUpPage')}}>
           <Text style={styles.touchableOpacityTextRegister}>Create Account</Text>
         </TouchableOpacity>
       </View>
+      
     </View>);
   }
 }

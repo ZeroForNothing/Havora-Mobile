@@ -38,7 +38,7 @@ export default class signup extends Component {
     return (
       <View style={styles.MainContainer}>
       <View style={styles.statusBar}>
-        <TouchableOpacity //onPress={}
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('SignInPage')}}
         style={styles.backward}>
            <MaterialCommunityIcons name="keyboard-backspace" size={36} color="black" />
         </TouchableOpacity>
