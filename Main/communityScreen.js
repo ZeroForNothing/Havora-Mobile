@@ -9,7 +9,6 @@ export class Community extends Component {
 
    render() {
       return (
-
          <View>
               <GetTopPosts />
          </View>

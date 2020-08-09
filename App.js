@@ -5,18 +5,23 @@ import SignInScreen from "./Login/signinScreen";
 import SignUpScreen from "./Login/signupScreen";
 import MainScreen from "./Main/mainScreen";
 
+import ChatSubScreen from './Main/chatSubScreen';
+
 const SignInStack = createStackNavigator({ SignInScreen: SignInScreen} , { headerMode: 'none' });
 const SignUpStack = createStackNavigator({ SignUpScreen: SignUpScreen } , { headerMode: 'none' });
 const MainStack = createStackNavigator({ MainScreen: MainScreen } , { headerMode: 'none' });
 
+const ChatSubStack = createStackNavigator({ ChatSubScreen: ChatSubScreen} , { headerMode: 'none' });
+
 const App = createSwitchNavigator({
   SignInPage: SignInStack,
   SignUpPage : SignUpStack,
-  MainPage: MainStack
+  ChatSubPage : ChatSubStack,
+  MainPage: MainStack,
 },
-        {
-          initialRouteName: 'SignInPage',
-        }
+  {
+    initialRouteName: 'SignInPage',
+  }
 );
 
 export default createAppContainer(App );

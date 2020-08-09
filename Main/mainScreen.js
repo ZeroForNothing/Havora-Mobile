@@ -72,7 +72,7 @@ function MyTabs() {
         options={{
           tabBarLabel: 'Chat',
           tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="message" color={color} size={24} />
+          <MaterialCommunityIcons name="message-text-outline" size={24} color={color} />
           ),
         }}
       />
